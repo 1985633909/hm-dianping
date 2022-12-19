@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author: 19856
  * @date: 2022/12/3-19:12
- * @description:
+ * @description: 访问需要用户登录的页面时的拦截器
  */
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -20,7 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             response.setStatus(401);
             return false;
         }
-
+        //由用户则放行
         return true;
     }
 
