@@ -19,6 +19,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import java.time.LocalDateTime;
@@ -168,6 +169,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             num >>>= 1;
         }
         return Result.ok(count);
+    }
+
+    @Override
+    public Result logout(HttpServletRequest request) {
+        UserDTO user = UserHolder.getUser();
+        String token = request.getHeader("authorization");
+        if (user == null || token ==null){
+            return Result.fail("用户未登录");
+        }
+        String key = LOGIN_USER_KEY + token;
+        stringRedisTemplate.delete(key);
+        return Result.ok("用户已成功退出");
     }
 
     private User createUserWithPhone(String phone) {
