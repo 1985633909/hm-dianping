@@ -1,9 +1,14 @@
 package com.hmdp.utils;
 
 /**
- * @author: 19856
- * @date: 2022/12/13-13:46
- * @description:
+ *
+ * <p>
+ *
+ * </p>
+ *
+ * @author 19856
+ * @since 2022/12/13-13:46
+ * @description
  */
 public interface ILock {
 
